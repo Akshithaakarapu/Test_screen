@@ -11,12 +11,44 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  List<String> Tittle=['Apples','Redberries'];
-  List<String> doller=['Only \$20','Only \$20'];
-  List<String> images=['images/apple.png','images/redberries.png',];
+  List<dynamic> Tittle=[
+  'Apples',
+  'Redberries',
+  'Banana',
+  'Strawberry'
+  ];
+  List<String> doller=[
+  'Only \$20',
+  'Only \$20'
+  'Only \$20',
+  'Only \$20'];
+  List<String> images=[
+  'images/apple.png',
+  'images/redberries.png',
+  'images/banana.png',
+  'images/dashimg1.png'];
+
+  List<dynamic> Tittle1=[
+  'Banana',
+  'Redberries',
+  'Apple',
+  'Strawberry',
+  ];
+  List<String> doller1=[
+  'Only \$20',
+  'Only \$20'
+  'Only \$20',
+  'Only \$20'
+  ];
+  List<String> images1=[
+  'images/banana.png',
+  'images/redberries.png',
+  'images/apple.png',
+  'images/dashimg1.png',
+    ];
   @override
   Widget build(BuildContext context) {
-    var images;
+
     return Scaffold(
       //appBar: AppBar(),
       body:SingleChildScrollView(
@@ -104,35 +136,35 @@ class _DashboardState extends State<Dashboard> {
               ),
               SizedBox(height: 20,),
               Container(
-                  height: 680,
-                  child: ListView.builder(
-            itemCount: images.length,
-            shrinkWrap: true,           
-            scrollDirection: Axis.vertical,
-            itemBuilder: (BuildContext context, int index) {
-              return Row( 
-                    children: [
-                      Container(
-                        height: 203,
-                        width: 157,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                          color: Color.fromARGB(255, 205, 205, 204), //                   <--- border color
-                           width: 1,
+              height: 230,
+              child: ListView.builder(
+                  itemCount:4,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Row(
+                      children: [
+                        Container(
+                          height: 203,
+                          width: 157,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Color.fromARGB(255, 205, 205, 204), //                   <--- border color
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                            color: Color(0xffFFFFFF),
                           ),
-                          borderRadius: BorderRadius.circular(15),
-                        color: Color(0xffFFFFFF),
-                        ),
-                        child: Column(
-                          children: [
-                            Container(
-                              //alignment: Alignment.topLeft,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 10,top: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(Tittle[index],style: TextStyle(color: Color(0xff121212),fontSize: 14,fontWeight: FontWeight.bold),),
+                          child: Column(
+                            children: [
+                              Container(
+                                //alignment: Alignment.topLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10,top: 10),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(Tittle[index],style: TextStyle(color: Color(0xff121212),fontSize: 14,fontWeight: FontWeight.bold),),
                                       Text(doller[index],style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
                                       SizedBox(
                                         height: 15,
@@ -146,269 +178,112 @@ class _DashboardState extends State<Dashboard> {
                                       Align(
                                         alignment: Alignment.bottomRight,
                                         child: Container(
-                                                          height: 30,
-                                                          width: 30,
-                                                          decoration: BoxDecoration(
-                                                            borderRadius: BorderRadius.circular(8),
-                                                            color: Color(0xffF47014),
-                                                            ),
-                                                          
-                                                          child: Image.asset('images/pluseicon.png')
-                                                        ),
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(8),
+                                              color: Color(0xffF47014),
+                                            ),
+
+                                            child: Image.asset('images/pluseicon.png')
+                                        ),
                                       ),
-                                    
-                                  ], 
+
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              
-                            )
-                          ],
+
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-              // Row( 
-              //     children: [
-              //       Container(
-              //         height: 203,
-              //         width: 157,
-              //         decoration: BoxDecoration(
-              //           border: Border.all(
-              //           color: Color.fromARGB(255, 205, 205, 204), //                   <--- border color
-              //            width: 1,
-              //           ),
-              //           borderRadius: BorderRadius.circular(15),
-              //         color: Color(0xffFFFFFF),
-              //         ),
-              //         child: Column(
-              //           children: [
-              //             Container(
-              //               //alignment: Alignment.topLeft,
-              //               child: Padding(
-              //                 padding: const EdgeInsets.only(left: 10,top: 10),
-              //                 child: Column(
-              //                   crossAxisAlignment: CrossAxisAlignment.start,
-              //                   children: [
-              //                     Text('Strawberry',style: TextStyle(color: Color(0xff121212),fontSize: 14,fontWeight: FontWeight.bold),),
-              //                       Text('Only \$10',style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
-              //                       SizedBox(
-              //                         height: 15,
-              //                       ),
-              //                       Center(
-              //                         child: Container(
-              //                           child: Image.asset('images/dashimg1.png'),
-              //                         ),
-              //                       ),
-              //                       SizedBox(height: 13,),
-              //                       Align(
-              //                         alignment: Alignment.bottomRight,
-              //                         child: Container(
-              //                                           height: 30,
-              //                                           width: 30,
-              //                                           decoration: BoxDecoration(
-              //                                             borderRadius: BorderRadius.circular(8),
-              //                                             color: Color(0xffF47014),
-              //                                             ),
-              //                                           child: Image.asset('images/pluseicon.png')
-              //                                ),
-              //                       ),
-                                  
-              //                   ],
-              //                 ),
-              //               ),
-                            
-              //             )
-              //           ],
-              //         ),
-              //       ),
-              //       SizedBox(width: 5,),
-              //       Container(
-              //         height: 203,
-              //         width: 157,
-              //         decoration: BoxDecoration(
-              //           border: Border.all(
-              //           color: Color.fromARGB(255, 205, 205, 204), //                   <--- border color
-              //            width: 1,
-              //           ),
-              //           borderRadius: BorderRadius.circular(15),
-              //         color: Color(0xffFFFFFF),
-              //         ),
-                      
-              //         child: Column(
-              //           children: [
-              //             Container(
-              //               //alignment: Alignment.topLeft,
-              //               child: Padding(
-              //                 padding: const EdgeInsets.only(left: 10,top: 10),
-              //                 child: Column(
-              //                   crossAxisAlignment: CrossAxisAlignment.start,
-              //                   children: [
-              //                     Text('Cherries',style: TextStyle(color: Color(0xff121212),fontSize: 14,fontWeight: FontWeight.bold),),
-              //                       Text('Only \$12',style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
-              //                       SizedBox(
-              //                         height: 15,
-              //                       ),
-              //                       Center(
-              //                         child: Container(
-              //                           child: InkWell(
-              //                           onTap: () {
-              //                             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
-              //                               return details();
-              //                              }));
-              //                           },
-              //                             child: Image.asset('images/dashimg2.png')),
-              //                         ),
-              //                       ),
-              //                       SizedBox(height: 13,),
-              //                       Align(
-              //                         alignment: Alignment.bottomRight,
-              //                         child: Container(
-              //                                           height: 30,
-              //                                           width: 30,
-              //                                           decoration: BoxDecoration(
-              //                                             borderRadius: BorderRadius.circular(8),
-              //                                             color: Color(0xffF47014),
-              //                                             ),
-                                                        
-              //                                           child: Image.asset('images/pluseicon.png')
-              //                                         ),
-              //                       ),
-                                  
-              //                   ],
-              //                 ),
-              //               ),
-                            
-              //             )
-              //           ],
-              //         ),
-              //       )
-              //     ],
-              //   ),
-                SizedBox(height: 15,),
-                Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Categories',style: TextStyle(color: Color(0xff121212),fontSize: 21,fontWeight: FontWeight.bold)),
-                                  Text('View All',style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
-                ],
+                        //SizedBox(width: 10,)
+
+                      ],
+                    );
+                  })
               ),
-              SizedBox(height: 20,),
-              Row( 
-                  children: [
-                    Container(
-                      height: 203,
-                      width: 157,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                        color: Color.fromARGB(255, 205, 205, 204), //                   <--- border color
-                         width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      color: Color(0xffFFFFFF),
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            //alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10,top: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Apples',style: TextStyle(color: Color(0xff121212),fontSize: 14,fontWeight: FontWeight.bold),),
-                                    Text('Only \$20',style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    Center(
-                                      child: Container(
-                                        child: Image.asset('images/apple.png'),
-                                      ),
-                                    ),
-                                    SizedBox(height: 13,),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Container(
-                                                        height: 30,
-                                                        width: 30,
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(8),
-                                                          color: Color(0xffF47014),
-                                                          ),
-                                                        
-                                                        child: Image.asset('images/pluseicon.png')
-                                                      ),
-                                    ),
-                                  
-                                ],
-                              ),
+
+               SizedBox(height: 15,),
+                  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                   children: [
+                     Text('Categories',style: TextStyle(color: Color(0xff121212),fontSize: 21,fontWeight: FontWeight.bold)),
+                                     Text('View All',style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
+                   ],
+                 ),
+                SizedBox(height: 20,),
+                Container(
+              height: 230,
+              child: ListView.builder(
+                  itemCount:5,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Row(
+                      children: [
+                        Container(
+                          height: 203,
+                          width: 157,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Color.fromARGB(255, 205, 205, 204), //                   <--- border color
+                              width: 1,
                             ),
-                            
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(width: 5,),
-                    Container(
-                      height: 203,
-                      width: 157,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                        color: Color.fromARGB(255, 205, 205, 204), //                   <--- border color
-                         width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      color: Color(0xffFFFFFF),
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            //alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10,top: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Red Berries',style: TextStyle(color: Color(0xff121212),fontSize: 14,fontWeight: FontWeight.bold),),
-                                    Text('Only \$40',style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    Center(
-                                      child: Container(
-                                        child: Image.asset('images/redberries.png'),
+                            borderRadius: BorderRadius.circular(15),
+                            color: Color(0xffFFFFFF),
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                //alignment: Alignment.topLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10,top: 10),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(Tittle1[index],style: TextStyle(color: Color(0xff121212),fontSize: 14,fontWeight: FontWeight.bold),),
+                                      Text(doller1[index],style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
+                                      SizedBox(
+                                        height: 15,
                                       ),
-                                    ),
-                                    SizedBox(height: 13,),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Container(
-                                                        height: 30,
-                                                        width: 30,
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(8),
-                                                          color: Color(0xffF47014),
-                                                          ),
-                                                        
-                                                        child: Image.asset('images/pluseicon.png')
-                                                      ),
-                                    ),
-                                  
-                                ],
-                              ),
-                            ),
-                            
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                
-            ] 
-        );
-            }
-                  )
-          ),
-            ]
+                                      Center(
+                                        child: Container(
+                                          child: Image.asset(images1[index]),
+                                        ),
+                                      ),
+                                      SizedBox(height: 13,),
+                                      Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: Container(
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(8),
+                                              color: Color(0xffF47014),
+                                            ),
+
+                                            child: Image.asset('images/pluseicon.png')
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+                                ),
+
+                              )
+                            ],
+                          ),
+                        ),
+                        //SizedBox(width: 10,)
+
+                      ],
+                    );
+                  })
+              ),
+
+
+        ]
           ),
       ),
       )

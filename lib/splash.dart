@@ -27,15 +27,7 @@ class _SpalshState extends State<Spalsh> {
     return Scaffold(
       backgroundColor: Color(0xffffffff),
       //appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(child: (Image.asset('images/splash.png')))
-          ],
-        ),
-      ),
+      body: Center(child: (Image.asset('images/splash.png'))),
       
     );
   }
