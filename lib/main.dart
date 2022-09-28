@@ -58,29 +58,31 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.circular(20),
                       color: Color(0xfff7f7f7),
                     ),
-                    child: InkWell( 
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(Icons.arrow_back_ios,color: Color.fromARGB(255, 7, 7, 7),))
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: InkWell( 
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back_ios,color: Color.fromARGB(255, 7, 7, 7),)),
+                    )
                   ),
                   SizedBox(width: 80,),
                   //Image.asset('images/arrowimg.png'),
                   Text('Settings',style: TextStyle(color: Color.fromARGB(255, 5, 5, 5),fontSize: 21,fontWeight: FontWeight.bold)),
                 ],
                ),
-                  SizedBox(height: 50,),
+                  //SizedBox(height: 100,),
                Column(                
                 children: [
-                  Image.asset('images/AKSHITH.jpeg',width: 150,height: 150,),
-                  SizedBox(height: 15,),
+                  Image.asset('images/manimg.png',width: 170,height: 170,),
                   Text('A.AKSHITH',style: TextStyle(color: Color(0xff121212),fontSize: 21,fontWeight: FontWeight.bold)),
-                  Text('9959901862',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 17,fontWeight: FontWeight.bold)),
+                  Text('9959901862',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 17,fontWeight: FontWeight.normal)),
                   SizedBox(height: 20,),
                   Text('-----------------------------------------------------------------------')
                 ],
                ),
-               SizedBox(height: 50,),
+               SizedBox(height: 30,),
                Row(
                 children: [
                   Container(
@@ -93,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Image.asset('images/proicon1.png'),
                   ),
                   SizedBox(width: 25,),
-                  Text('My Orders',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 17,fontWeight: FontWeight.bold))
+                  Text('My Orders',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 18,fontWeight: FontWeight.normal))
                 ],
                ),
                 SizedBox(height: 10,),
@@ -110,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Icon(Icons.fact_check,color: Color(0xffF47014),)
                   ),
                   SizedBox(width: 25,),
-                  Text('Terms of Use',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 17,fontWeight: FontWeight.bold))
+                  Text('Terms of Use',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 18,fontWeight: FontWeight.normal))
                 ],
                ),
                 SizedBox(height: 10,),
@@ -126,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Image.asset('images/proicon3.png'),
                   ),
                   SizedBox(width: 25,),
-                  Text('Privacy Policy',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 17,fontWeight: FontWeight.bold))
+                  Text('Privacy Policy',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 18,fontWeight: FontWeight.normal))
                 ],
                ),
                 SizedBox(height: 10,),
@@ -142,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Image.asset('images/proicon1.png'),
                   ),
                   SizedBox(width: 25,),
-                  Text('About',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 17,fontWeight: FontWeight.bold))
+                  Text('About',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 18,fontWeight: FontWeight.normal))
                 ],
                ),
                SizedBox(height: 10,),
@@ -158,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Image.asset('images/proicon5.png'),
                   ),
                   SizedBox(width: 25,),
-                  Text('Log Out',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 17 ,fontWeight: FontWeight.bold))
+                  Text('Log Out',style: TextStyle(color: Color(0xff1C1C1C),fontSize: 18 ,fontWeight: FontWeight.normal))
                 ],
                ),
                 

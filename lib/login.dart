@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:test_screen/dashboard.dart';
 import 'package:test_screen/main.dart';
@@ -11,6 +12,46 @@ class loginpage extends StatefulWidget {
 }
 
 class _loginpageState extends State<loginpage> {
+
+final usernameController= TextEditingController();
+final passwordController=TextEditingController();
+bool _loading=false;
+
+void performLogin() async{
+
+  String username=usernameController.text.trim();
+  String password=passwordController.text.trim();
+
+FormData formData=FormData.fromMap({
+
+"username":username,
+"password":password
+
+});
+
+  setState(() {
+    
+  });
+  Response response=await Dio().post("http://jayanthi10.pythonanywhere.com/api/v1/login/",data: formData);
+
+  
+  if(response.statusCode==200){
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
+      return signuppage();}));
+
+       setState(() {
+    _loading=true;
+  });
+  }
+
+
+  else{
+    print("wrong credentioal");
+  }
+
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +74,7 @@ class _loginpageState extends State<loginpage> {
                  Column(
                   children: [
                     TextField(
+                      controller: usernameController,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.mail,color: Color(0xffFC7508),),
                     labelText: 'EMAIL',
@@ -45,6 +87,7 @@ class _loginpageState extends State<loginpage> {
                 ),
                 SizedBox(height: 25,),
                 TextField(
+                  controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     
@@ -71,9 +114,10 @@ class _loginpageState extends State<loginpage> {
                   ),
                   child: InkWell(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {  
-                        return Dashboard();
-                      }));
+                      performLogin();
+                      // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {  
+                      //   return Dashboard();
+                      // }));
                     },
                     child: Text('LOGIN',style: TextStyle(color: Color(0xffFFFFFF),fontSize: 18,fontWeight: FontWeight.bold),
                                  ),

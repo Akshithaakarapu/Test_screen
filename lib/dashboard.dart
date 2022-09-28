@@ -1,7 +1,14 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:test_screen/details.dart';
 
 import 'package:test_screen/main.dart';
+import 'package:test_screen/models/entries.dart';
 import 'package:test_screen/popularfood.dart';
+import 'package:test_screen/practices.dart';
+import 'package:test_screen/widget/dashboard_new.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({ Key? key }) : super(key: key);
@@ -17,14 +24,15 @@ class _DashboardState extends State<Dashboard> {
   'Banana',
   'Strawberry'
   ];
-  List<String> doller=[
+  List<dynamic> doller=[
+  'Only \$20',
+  'Only \$20',
   'Only \$20',
   'Only \$20'
-  'Only \$20',
-  'Only \$20'];
-  List<String> images=[
+  ];
+  List<dynamic> images=[
   'images/apple.png',
-  'images/redberries.png',
+  'images/imagesmall.png',
   'images/banana.png',
   'images/dashimg1.png'];
 
@@ -34,21 +42,75 @@ class _DashboardState extends State<Dashboard> {
   'Apple',
   'Strawberry',
   ];
-  List<String> doller1=[
+  List<dynamic> doller1=[
   'Only \$20',
-  'Only \$20'
+  'Only \$20',
   'Only \$20',
   'Only \$20'
   ];
-  List<String> images1=[
+  List<dynamic> images1=[
   'images/banana.png',
   'images/redberries.png',
   'images/apple.png',
   'images/dashimg1.png',
     ];
+
+
+    Testing? list;
+ bool _loading= false;
+
+  // void data() async {
+  //   setState(() {
+
+  //   });
+  //   try {
+  //     Response response =
+  //     await Dio().get("https://api.publicapis.org/entries");
+  //     setState(() {
+  //       print(response.data);
+  //       list = testingFromJson(jsonEncode(response.data));
+  //       _loading=true;
+  //      // products=list[0].products;
+  //     });
+
+  //   } catch (e) {
+  //     setState(() {
+  //       _loading = true;
+  //     });
+  //     print(e);
+  //   }
+  // }
+
+
+
+void data() async{
+  try{
+    Response response= await Dio().get("https://api.publicapis.org/entries");
+    setState(() {
+      print(".................${response.data}");
+      list=testingFromJson(jsonEncode(response.data));
+      _loading=true;
+    });
+  }
+  catch(e){
+    setState(() {
+    _loading=true;
+      
+    });
+    print(e);
+  }
+}
+ 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    data();
+  }
+
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       //appBar: AppBar(),
       body:SingleChildScrollView(
@@ -57,6 +119,11 @@ class _DashboardState extends State<Dashboard> {
           padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
           child: Column(
             children: [
+
+
+              Text(" list count:${list?.count}"),
+
+
               Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                    Container(
@@ -65,8 +132,7 @@ class _DashboardState extends State<Dashboard> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Color(0xfff7f7f7),
-                        ),
-                      
+                        ),                     
                       child: Image.asset('images/menuicon.png')
                     ),
                      Container(
@@ -75,18 +141,21 @@ class _DashboardState extends State<Dashboard> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Color(0xfff7f7f7),
-                        ),
-                      
-                      child: Center(child: InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                            return MyHomePage();
-                            }));
-                        },
-                        child: Icon(Icons.person)))
+                        ),                     
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                              return MyHomePage();
+                              }));
+                          },
+                          child: Icon(Icons.person)),
+                      )
                     ),
                 ],
               ),
+              SizedBox(height: 15,),
               Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
@@ -105,7 +174,6 @@ class _DashboardState extends State<Dashboard> {
                               ),
                             ),
                   ),
-                  
                    Container(
                       height: 59,
                       width: 50,
@@ -113,7 +181,6 @@ class _DashboardState extends State<Dashboard> {
                         borderRadius: BorderRadius.circular(20),
                         color: Color(0xfff7f7f7),
                         ),
-                      
                       child: Center(child: Icon(Icons.tune))
                     ),
                 ],
@@ -134,77 +201,17 @@ class _DashboardState extends State<Dashboard> {
                                     child: Text('View All',style: TextStyle(color: Color(0xff121212),fontSize: 14,))),
                 ],
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 15,),
               Container(
               height: 230,
               child: ListView.builder(
-                  itemCount:4,
+                  itemCount:list?.entries!.length,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
-                    return Row(
-                      children: [
-                        Container(
-                          height: 203,
-                          width: 157,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color.fromARGB(255, 205, 205, 204), //                   <--- border color
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                            color: Color(0xffFFFFFF),
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                //alignment: Alignment.topLeft,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 10,top: 10),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(Tittle[index],style: TextStyle(color: Color(0xff121212),fontSize: 14,fontWeight: FontWeight.bold),),
-                                      Text(doller[index],style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Center(
-                                        child: Container(
-                                          child: Image.asset(images[index]),
-                                        ),
-                                      ),
-                                      SizedBox(height: 13,),
-                                      Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(8),
-                                              color: Color(0xffF47014),
-                                            ),
-
-                                            child: Image.asset('images/pluseicon.png')
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-                                ),
-
-                              )
-                            ],
-                          ),
-                        ),
-                        //SizedBox(width: 10,)
-
-                      ],
-                    );
+                    return dashboard_new(images: '${images[index]}', Tittle: '${Tittle[index]}', doller: '${doller[index]}');
                   })
               ),
-
-               SizedBox(height: 15,),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                    children: [
@@ -212,81 +219,28 @@ class _DashboardState extends State<Dashboard> {
                                      Text('View All',style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
                    ],
                  ),
-                SizedBox(height: 20,),
+                SizedBox(height: 15,),
                 Container(
               height: 230,
               child: ListView.builder(
-                  itemCount:5,
+                  itemCount:4,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
-                    return Row(
-                      children: [
-                        Container(
-                          height: 203,
-                          width: 157,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color.fromARGB(255, 205, 205, 204), //                   <--- border color
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                            color: Color(0xffFFFFFF),
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                //alignment: Alignment.topLeft,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 10,top: 10),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(Tittle1[index],style: TextStyle(color: Color(0xff121212),fontSize: 14,fontWeight: FontWeight.bold),),
-                                      Text(doller1[index],style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Center(
-                                        child: Container(
-                                          child: Image.asset(images1[index]),
-                                        ),
-                                      ),
-                                      SizedBox(height: 13,),
-                                      Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(8),
-                                              color: Color(0xffF47014),
-                                            ),
-
-                                            child: Image.asset('images/pluseicon.png')
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-                                ),
-
-                              )
-                            ],
-                          ),
-                        ),
-                        //SizedBox(width: 10,)
-
-                      ],
-                    );
+                    return dashboard_new(images: "${images1[index]}", doller: "${doller1[index]}", Tittle: "${Tittle1[index]}");
                   })
               ),
-
-
-        ]
+              ElevatedButton(onPressed: (() {
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
+                  return Practices();
+                 }));
+              }), 
+              child: Text('akshith'))
+             ]
           ),
       ),
       )
     );
   }
 }
+

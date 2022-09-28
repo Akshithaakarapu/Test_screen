@@ -49,7 +49,6 @@ class _detailsState extends State<details> {
                Text('About Product',style: TextStyle(color: Color(0xffFE6F00),fontSize: 16,fontWeight: FontWeight.bold),),
                SizedBox(height: 20,),
                Text('Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. \n\nExercitation veniam consequat sunt nostrud amet.Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit',style: TextStyle(color: Color(0xff929292),fontSize: 14,fontWeight: FontWeight.bold),)
-        
               ],),
               SizedBox(height:30 ,),
               Container(
@@ -61,16 +60,7 @@ class _detailsState extends State<details> {
                 ),
                 child: Text('Add to cart',style: TextStyle(color: Color(0xffFFFFFF),fontSize: 18,fontWeight: FontWeight.bold),
                ),
-              ),
-               ElevatedButton(
-              child: const Text('Open route'),
-              onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                return loginpage();
-              }));
-                // Navigate to second route when tapped.
-              },
-            ),
-              
+              ), 
             ],),
           ),
         ),
@@ -78,3 +68,4 @@ class _detailsState extends State<details> {
     );
   }
 }
+ 
