@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:test_screen/dashboard.dart';
 
-class signuppage extends StatefulWidget {
-  const signuppage({ Key? key }) : super(key: key);
+class Signuppage extends StatefulWidget {
+  const Signuppage({ Key? key }) : super(key: key);
 
   @override
-  State<signuppage> createState() => _signuppageState();
+  State<Signuppage> createState() => _SignuppageState();
 }
 
-class _signuppageState extends State<signuppage> {
+class _SignuppageState extends State<Signuppage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

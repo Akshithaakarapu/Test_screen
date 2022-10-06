@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_screen/addproduct.dart';
 import 'package:test_screen/login.dart';
 
 import '../details.dart';
@@ -12,7 +13,7 @@ class dashboard_new extends StatelessWidget{
     return  Row(
                       children: [
                         Container(
-                          height: 203,
+                          height: 249,
                           width: 157,
                           decoration: BoxDecoration(
                             border: Border.all(
@@ -44,7 +45,7 @@ class dashboard_new extends StatelessWidget{
                                               return details();
                                              }));
                                           },
-                                          child: Image.asset(images)),
+                                          child: Image.network(images)),
                                       ),
                                       SizedBox(height: 13,),
                                       Align(
@@ -56,7 +57,13 @@ class dashboard_new extends StatelessWidget{
                                               borderRadius: BorderRadius.circular(8),
                                               color: Color(0xffF47014),
                                             ),
-                                            child: Image.asset('images/pluseicon.png')
+                                            child: InkWell(
+                                              onTap: () {
+                                                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
+                                                  return Add_product();
+                                                 }));
+                                              },
+                                              child: Image.asset('images/pluseicon.png'))
                                         ),
                                       ),
                                     ],
@@ -81,7 +88,7 @@ class dashboard_new extends StatelessWidget{
       return Row(
                       children: [
                         Container(
-                          height: 203,
+                          height: 249,
                           width: 157,
                           decoration: BoxDecoration(
                             border: Border.all(
@@ -106,7 +113,7 @@ class dashboard_new extends StatelessWidget{
                                         height: 15,
                                       ),
                                       Container(
-                                        child: Image.asset(images1),
+                                        child: Image.network(images1),
                                       ),
                                       SizedBox(height: 13,),
                                       Align(

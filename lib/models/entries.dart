@@ -1,102 +1,77 @@
 // To parse this JSON data, do
 //
-//     final testing = testingFromJson(jsonString);
+//     final productList = productListFromJson(jsonString);
 
 import 'dart:convert';
 
-Testing testingFromJson(String str) => Testing.fromJson(json.decode(str));
+ProductList productListFromJson(String str) => ProductList.fromJson(json.decode(str));
 
-String testingToJson(Testing data) => json.encode(data.toJson());
+String productListToJson(ProductList data) => json.encode(data.toJson());
 
-class Testing {
-    Testing({
-        this.count,
-        this.entries,
+class ProductList {
+    ProductList({
+        this.products,
+        this.page,
+        this.limit,
+        this.searchText,
+        this.total,
     });
 
-    int? count;
-    List<Entry>? entries;
+    List<Product>? products;
+    int? page;
+    int? limit;
+    dynamic searchText;
+    int? total;
 
-    factory Testing.fromJson(Map<String, dynamic> json) => Testing(
-        count: json["count"] == null ? null : json["count"],
-        entries: json["entries"] == null ? null : List<Entry>.from(json["entries"].map((x) => Entry.fromJson(x))),
+    factory ProductList.fromJson(Map<String, dynamic> json) => ProductList(
+        products: json["products"] == null ? null : List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
+        page: json["page"] == null ? null : json["page"],
+        limit: json["limit"] == null ? null : json["limit"],
+        searchText: json["search_text"],
+        total: json["total"] == null ? null : json["total"],
     );
 
     Map<String, dynamic> toJson() => {
-        "count": count == null ? null : count,
-        "entries": entries == null ? null : List<dynamic>.from(entries!.map((x) => x.toJson())),
+        "products": products == null ? null : List<dynamic>.from(products!.map((x) => x.toJson())),
+        "page": page == null ? null : page,
+        "limit": limit == null ? null : limit,
+        "search_text": searchText,
+        "total": total == null ? null : total,
     };
 }
 
-class Entry {
-    Entry({
-        this.api,
+class Product{
+    Product({
+        this.productId,
+        this.productName,
         this.description,
-        this.auth,
-        this.https,
-        this.cors,
-        this.link,
-        this.category,
+        this.image,
+        this.createdAt,
+        this.updatedAt,
     });
 
-    String? api;
+    int? productId;
+    String? productName;
     String? description;
-    String? auth;
-    bool? https;
-    String? cors;
-    String? link;
-    String? category;
+    String? image;
+    DateTime? createdAt;
+    DateTime? updatedAt;
 
-    factory Entry.fromJson(Map<String, dynamic> json) => Entry(
-        api: json["API"] == null ? null : json["API"],
-        description: json["Description"] == null ? null : json["Description"],
-        auth: json["Auth"] == null ? null : json["Auth"],
-        https: json["HTTPS"] == null ? null : json["HTTPS"],
-        cors: json["Cors"] == null ? null : json["Cors"],
-        link: json["Link"] == null ? null : json["Link"],
-        category: json["Category"] == null ? null : json["Category"],
+    factory Product.fromJson(Map<String, dynamic> json) => Product(
+        productId: json["product_id"] == null ? null : json["product_id"],
+        productName: json["product_name"] == null ? null : json["product_name"],
+        description: json["description"] == null ? null : json["description"],
+        image: json["image"] == null ? null : json["image"],
+        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     );
 
     Map<String, dynamic> toJson() => {
-        "API": api == null ? null : api,
-        "Description": description == null ? null : description,
-        "Auth": auth == null ? null :auth,
-        "HTTPS": https == null ? null : https,
-        "Cors": cors == null ? null :cors,
-        "Link": link == null ? null : link,
-        "Category": category == null ? null : category,
+        "product_id": productId == null ? null : productId,
+        "product_name": productName == null ? null : productName,
+        "description": description == null ? null : description,
+        "image": image == null ? null : image,
+        "created_at": createdAt == null ? null : createdAt!.toIso8601String(),
+        "updated_at": updatedAt == null ? null : updatedAt!.toIso8601String(),
     };
 }
-
-//enum Auth { API_KEY, EMPTY, O_AUTH, X_MASHAPE_KEY, USER_AGENT }
-
-// final authValues = EnumValues({
-//     "apiKey": Auth.API_KEY,
-//     "": Auth.EMPTY,
-//     "OAuth": Auth.O_AUTH,
-//     "User-Agent": Auth.USER_AGENT,
-//     "X-Mashape-Key": Auth.X_MASHAPE_KEY
-// });
-
-// enum Cors { YES, NO, UNKNOWN, UNKOWN }
-
-// final corsValues = EnumValues({
-//     "no": Cors.NO,
-//     "unknown": Cors.UNKNOWN,
-//     "unkown": Cors.UNKOWN,
-//     "yes": Cors.YES
-// });
-
-// class EnumValues<T> {
-//     Map<String, T> map;
-//     Map<T, String> reverseMap;
-
-//     EnumValues(this.map);
-
-//     Map<T, String> get reverse {
-//         if (reverseMap == null) {
-//             reverseMap = map.map((k, v) => new MapEntry(v, k));
-//         }
-//         return reverseMap;
-//     }
-// }

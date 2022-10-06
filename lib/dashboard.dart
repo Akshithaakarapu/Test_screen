@@ -56,7 +56,7 @@ class _DashboardState extends State<Dashboard> {
     ];
 
 
-    Testing? list;
+    ProductList? list;
  bool _loading= false;
 
   // void data() async {
@@ -85,10 +85,10 @@ class _DashboardState extends State<Dashboard> {
 
 void data() async{
   try{
-    Response response= await Dio().get("https://api.publicapis.org/entries");
+    Response response= await Dio().get("http://jayanthi10.pythonanywhere.com/api/v1/list_products/");
     setState(() {
       print(".................${response.data}");
-      list=testingFromJson(jsonEncode(response.data));
+      list=productListFromJson(jsonEncode(response.data));
       _loading=true;
     });
   }
@@ -119,11 +119,7 @@ void data() async{
           padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
           child: Column(
             children: [
-
-
-              Text(" list count:${list?.count}"),
-
-
+             // Text(" list count:${list!.products![index].productId}"),
               Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                    Container(
@@ -191,51 +187,65 @@ void data() async{
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Popular Foods',style: TextStyle(color: Color(0xff121212),fontSize: 21,fontWeight: FontWeight.bold)),
+                  Text('Popular Foods',
+                  style: TextStyle(color: Color(0xff121212),
+                  fontSize: 21,fontWeight: FontWeight.bold)),
                                   InkWell(
                                     onTap: () {
                                       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
                                         return Popularfood();
                                        }));
                                     },
-                                    child: Text('View All',style: TextStyle(color: Color(0xff121212),fontSize: 14,))),
+                  child: Text('View All',
+                  style: TextStyle(color: Color(0xff121212),
+                  fontSize: 14,))),
                 ],
               ),
               SizedBox(height: 15,),
               Container(
-              height: 230,
+              height: 270,
               child: ListView.builder(
-                  itemCount:list?.entries!.length,
+                  itemCount:list?.products!.length,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
-                    return dashboard_new(images: '${images[index]}', Tittle: '${Tittle[index]}', doller: '${doller[index]}');
+                    return dashboard_new(
+                      images: 'http://jayanthi10.pythonanywhere.com${list!.products![index].image}',
+                     Tittle: '${list!.products![index].productId}', 
+                     doller: '${list!.products![index].productName}');
                   })
               ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                    children: [
-                     Text('Categories',style: TextStyle(color: Color(0xff121212),fontSize: 21,fontWeight: FontWeight.bold)),
-                                     Text('View All',style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
+                     Text('Categories',
+                     style: TextStyle(
+                      color: Color(0xff121212),
+                      fontSize: 21,
+                      fontWeight: FontWeight.bold)),
+                      Text('View All',style: TextStyle(color: Color(0xff121212),fontSize: 14,)),
                    ],
                  ),
                 SizedBox(height: 15,),
                 Container(
-              height: 230,
+              height: 270,
               child: ListView.builder(
-                  itemCount:4,
+                  itemCount:list?.products!.length,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
-                    return dashboard_new(images: "${images1[index]}", doller: "${doller1[index]}", Tittle: "${Tittle1[index]}");
+                    return dashboard_new(
+                      images: "http://jayanthi10.pythonanywhere.com${list!.products![index].image}", 
+                      doller: "${list!.products![index].productName}",
+                      Tittle: "${list!.products![index].productId}");
                   })
               ),
-              ElevatedButton(onPressed: (() {
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
-                  return Practices();
-                 }));
-              }), 
-              child: Text('akshith'))
+              // ElevatedButton(onPressed: (() {
+              //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
+              //     return Practices();
+              //    }));
+              // }), 
+              // child: Text('akshith'))
              ]
           ),
       ),

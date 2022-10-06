@@ -37,7 +37,7 @@ FormData formData=FormData.fromMap({
   
   if(response.statusCode==200){
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
-      return signuppage();}));
+      return Dashboard();}));
 
        setState(() {
     _loading=true;
@@ -88,7 +88,7 @@ FormData formData=FormData.fromMap({
                 SizedBox(height: 25,),
                 TextField(
                   controller: passwordController,
-                  obscureText: true,
+                  //obscureText: true,
                   decoration: InputDecoration(
                     
                     prefixIcon: Icon(Icons.person,color: Color(0xffFC7508),),
@@ -131,7 +131,7 @@ FormData formData=FormData.fromMap({
                                 InkWell(
                                   onTap: () {
                                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                      return signuppage();
+                                      return Signuppage();
                                       }));
                                   },
                                   child: Text('Create a new account',style: TextStyle(color: Color(0xffFC7508),fontSize: 14,)))

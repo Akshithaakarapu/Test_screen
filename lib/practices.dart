@@ -14,34 +14,34 @@ class Practices extends StatefulWidget {
 
 class _PracticesState extends State<Practices> {
 
-  Testing? list;
- bool _loading= false;
+//   Testing? list;
+//  bool _loading= false;
 
 
-void data() async{
-  try{
-    Response response= await Dio().get("https://api.publicapis.org/entries");
-    setState(() {
-      print(".................${response.data}");
-      list=testingFromJson(jsonEncode(response.data));
-      _loading=true;
-    });
-  }
-  catch(e){
-    setState(() {
-    _loading=true;
+// void data() async{
+//   try{
+//     Response response= await Dio().get("https://api.publicapis.org/entries");
+//     setState(() {
+//       print(".................${response.data}");
+//       list=testingFromJson(jsonEncode(response.data));
+//       _loading=true;
+//     });
+//   }
+//   catch(e){
+//     setState(() {
+//     _loading=true;
       
-    });
-    print(e);
-  }
-}
+//     });
+//     print(e);
+//   }
+// }
  
 
   @override
-  void initState() {
-    // TODO: implement initState
-    data();
-  }
+  // void initState() {
+  //   // TODO: implement initState
+  //   data();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +49,11 @@ void data() async{
       //appBar: AppBar(),
       body: Column(
         children: [
-          list==null?CircularProgressIndicator():
+         // list==null?CircularProgressIndicator():
            Container(
                     height: 640,
                     child: GridView.builder(
-              itemCount: list!.entries!.length,
+              //itemCount: list!.entries!.length,
               shrinkWrap: true,           
               scrollDirection: Axis.vertical,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( 
@@ -66,8 +66,8 @@ void data() async{
               itemBuilder: (BuildContext context, int index) {
                 return Column(
                   children: [
-                    Text(" list count:${list?.count}"),
-                    Text("iteam name:${list?.entries![index].category}"),
+                    // Text(" list count:${list?.count}"),
+                    // Text("iteam name:${list?.entries![index].category}"),
                  // Text("iteam name:${list?.entries![index].link}"),
 
                     ],
