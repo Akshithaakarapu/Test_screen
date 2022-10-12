@@ -25,13 +25,13 @@ class _Add_productState extends State<Add_product> {
 
 // })}
 
-XFile? insidePic;
+ XFile? insidePic;
   String networkImage = "";
   final picker = ImagePicker();
   Future getImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     //File image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
+     setState(() {
       if (pickedFile != null) {
         insidePic = pickedFile;
         networkImage = "";
@@ -41,25 +41,25 @@ XFile? insidePic;
     });
   }
 
-  final usernameController= TextEditingController();
-final passwordController=TextEditingController();
-bool _loading=false;
+  final productController= TextEditingController();
+  final descriptionController=TextEditingController();
+  bool _loading=false;
 
-void performLogin() async{
+  void performLogin() async{
 
-  String username=usernameController.text.trim();
-  String password=passwordController.text.trim();
+  String product=productController.text.trim();
+  String description=descriptionController.text.trim();
 
-FormData formData=FormData.fromMap({
+  FormData formData=FormData.fromMap({
 
-"product_name":username,
-"description":password,
-"image": MultipartFile.fromBytes(
+  "product_name":product,
+  "description":description,
+  "image": MultipartFile.fromBytes(
         await insidePic!.readAsBytes(),
         filename: insidePic?.name,
       ),
 
-});
+   });
 
   setState(() {
     
@@ -82,8 +82,6 @@ FormData formData=FormData.fromMap({
   }
 
 }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,29 +93,29 @@ FormData formData=FormData.fromMap({
             Column(
                     children: [
                       TextField(
-                      controller: usernameController,
+                      controller: productController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.mail,color: Color(0xffFC7508),),
-                      labelText: 'EMAIL',
+                      labelText: 'PRODUCT',
                       border: OutlineInputBorder( 
                         borderRadius: BorderRadius.circular(10)
                       ),
-                      hintText: 'Enter mail',
+                      hintText: 'Enter productname',
                       
                     ),
                   ),
                   SizedBox(height: 25,),
                   TextField(
-                    controller: passwordController,
+                    controller: descriptionController,
                     //obscureText: true,
                     decoration: InputDecoration(
                       
                       prefixIcon: Icon(Icons.person,color: Color(0xffFC7508),),
-                      labelText: 'PASSWORD',
+                      labelText: 'DESCRIPTION',
                       border: OutlineInputBorder( 
                         borderRadius: BorderRadius.circular(10)
                       ),
-                      hintText: 'Enter password',
+                      hintText: 'Enter description',
                       
                     ),
                   ),
@@ -134,18 +132,19 @@ FormData formData=FormData.fromMap({
                   // ),
                   
 
-
+                SizedBox(height: 100,),
 
                   ElevatedButton(onPressed: (() {
                     
-                     performLogin();
+                     getImage();
                  
                }), 
                child: Text('Upload')),
 
                ElevatedButton(onPressed: (() {
                     
-               getImage();
+              
+               performLogin();
                }), 
                child: Text('Add product'))
           ],
