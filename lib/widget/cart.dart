@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_screen/dashboard.dart';
-import 'package:test_screen/widget/dashboard_new.dart';
+import 'package:test_screen/widget/dashboard_ex.dart';
 
 class Cart_page extends StatelessWidget {
   const Cart_page({ Key? key }) : super(key: key);

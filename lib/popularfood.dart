@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:test_screen/details.dart';
-import 'package:test_screen/models/entries.dart';
-import 'package:test_screen/widget/Popular_Foods.dart';
+import 'package:test_screen/ProductDetails.dart';
+import 'package:test_screen/models/entries_API.dart';
+import 'package:test_screen/widget/Popularfoods_ex.dart';
 
 class Popularfood extends StatefulWidget {
   const Popularfood({ Key? key }) : super(key: key);

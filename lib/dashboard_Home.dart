@@ -2,13 +2,12 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:test_screen/details.dart';
+import 'package:test_screen/ProductDetails.dart';
 
 import 'package:test_screen/main.dart';
-import 'package:test_screen/models/entries.dart';
+import 'package:test_screen/models/entries_API.dart';
 import 'package:test_screen/popularfood.dart';
-import 'package:test_screen/practices.dart';
-import 'package:test_screen/widget/dashboard_new.dart';
+import 'package:test_screen/widget/dashboard_ex.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({ Key? key }) : super(key: key);
@@ -184,10 +183,19 @@ void data() async{
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
-                    return dashboard_new(
-                    images: 'http://jayanthi10.pythonanywhere.com${list!.data![index].image}',
-                     Tittle: '${list!.data![index].productId}', 
-                     doller: '${list!.data![index].productName}');
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
+                          return details(
+                            productId: list!.data![index].productId,
+                          );
+                         }));
+                      },
+                      child: dashboard_new(
+                      images: 'http://jayanthi10.pythonanywhere.com${list!.data![index].image}',
+                       Tittle: '${list!.data![index].productId}', 
+                       doller: '${list!.data![index].productName}'),
+                    );
                   })
               ),
                   Row(
@@ -205,7 +213,7 @@ void data() async{
                 Container(
               height: 270,
               child: ListView.builder(
-                  itemCount:images.length,
+                  itemCount:list!.data!.length,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {

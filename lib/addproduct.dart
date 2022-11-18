@@ -2,8 +2,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:test_screen/dashboard.dart';
 
-import 'home_Screens/dashboard.dart';
 
 class Add_product extends StatefulWidget {
   const Add_product({ Key? key }) : super(key: key);

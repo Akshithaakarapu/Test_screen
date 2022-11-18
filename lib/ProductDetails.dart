@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:test_screen/addproduct.dart';
 import 'package:test_screen/login.dart';
-import 'package:test_screen/models/details.dart';
-import 'package:test_screen/models/entries.dart';
+import 'package:test_screen/models/details_API.dart';
+import 'package:test_screen/models/entries_API.dart';
 import 'package:test_screen/widget/cart.dart';
 
 class details extends StatefulWidget {

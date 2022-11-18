@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_screen/addproduct.dart';
 import 'package:test_screen/login.dart';
 
-import '../details.dart';
+import '../ProductDetails.dart';
 class dashboard_new extends StatelessWidget{
   const dashboard_new ({ required this.images, required this.doller, required this.Tittle});
   final String images;
