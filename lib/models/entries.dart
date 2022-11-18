@@ -10,60 +10,44 @@ String productListToJson(ProductList data) => json.encode(data.toJson());
 
 class ProductList {
     ProductList({
-        this.products,
-        this.page,
-        this.limit,
-        this.searchText,
-        this.total,
+        this.data,
     });
 
-    List<Product>? products;
-    int? page;
-    int? limit;
-    dynamic searchText;
-    int? total;
+    List<Datum>? data;
 
     factory ProductList.fromJson(Map<String, dynamic> json) => ProductList(
-        products: json["products"] == null ? null : List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
-        page: json["page"] == null ? null : json["page"],
-        limit: json["limit"] == null ? null : json["limit"],
-        searchText: json["search_text"],
-        total: json["total"] == null ? null : json["total"],
+        data: json["data"] == null ? null : List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "products": products == null ? null : List<dynamic>.from(products!.map((x) => x.toJson())),
-        "page": page == null ? null : page,
-        "limit": limit == null ? null : limit,
-        "search_text": searchText,
-        "total": total == null ? null : total,
+        "data": data == null ? null : List<dynamic>.from(data!.map((x) => x.toJson())),
     };
 }
 
-class Product{
-    Product({
+class Datum {
+    Datum({
         this.productId,
         this.productName,
         this.description,
         this.image,
-        this.createdAt,
-        this.updatedAt,
+        required this.createdAt,
+        required this.updatedAt,
     });
 
     int? productId;
     String? productName;
     String? description;
     String? image;
-    DateTime? createdAt;
-    DateTime? updatedAt;
+    DateTime createdAt;
+    DateTime updatedAt;
 
-    factory Product.fromJson(Map<String, dynamic> json) => Product(
+    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         productId: json["product_id"] == null ? null : json["product_id"],
         productName: json["product_name"] == null ? null : json["product_name"],
         description: json["description"] == null ? null : json["description"],
         image: json["image"] == null ? null : json["image"],
-        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+        createdAt:  DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
     );
 
     Map<String, dynamic> toJson() => {
@@ -71,7 +55,7 @@ class Product{
         "product_name": productName == null ? null : productName,
         "description": description == null ? null : description,
         "image": image == null ? null : image,
-        "created_at": createdAt == null ? null : createdAt!.toIso8601String(),
-        "updated_at": updatedAt == null ? null : updatedAt!.toIso8601String(),
+        "created_at": createdAt == null ? null : createdAt.toIso8601String(),
+        "updated_at": updatedAt == null ? null : updatedAt.toIso8601String(),
     };
 }

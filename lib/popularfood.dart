@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:test_screen/details.dart';
+import 'package:test_screen/models/entries.dart';
 import 'package:test_screen/widget/Popular_Foods.dart';
 
 class Popularfood extends StatefulWidget {
@@ -53,11 +58,33 @@ class _PopularfoodState extends State<Popularfood> {
   'Only \$20',
   'Only \$20',
   ];
-  //List<String> doller2=['Only \$10','Only \$40','Only \$40','Only \$8','Only \$20'];
+   ProductList? list;
+ bool _loading= false;
+  void data() async{
+  try{
+    Response response= await Dio().get("http://jayanthi10.pythonanywhere.com/api/v1/list_products/");
+    setState(() {
+      print(".................${response.data}");
+      list=productListFromJson(jsonEncode(response.data));
+      _loading=true;
+    });
+  }
+  catch(e){
+    setState(() {
+    _loading=true;
+      
+    });
+    print(e);
+  }
+}
+ 
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    data();
+  }
 
-
-  
   @override
   Widget build(BuildContext context) {
     
@@ -87,13 +114,14 @@ class _PopularfoodState extends State<Popularfood> {
                       ),
                       SizedBox(width: 80,),
                       //Image.asset('images/arrowimg.png'),
-                      Text('Settings',style: TextStyle(color: Color.fromARGB(255, 5, 5, 5),fontSize: 21,fontWeight: FontWeight.bold)),
+                      Text('Popular food',style: TextStyle(color: Color.fromARGB(255, 5, 5, 5),fontSize: 21,fontWeight: FontWeight.bold)),
                     ],
                    ),
+                  list==null? CircularProgressIndicator():
                    Container(
                     height: 640,
                     child: GridView.builder(
-              itemCount: images.length,
+              itemCount: list?.data!.length,
               shrinkWrap: true,           
               scrollDirection: Axis.vertical,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( 
@@ -103,9 +131,23 @@ class _PopularfoodState extends State<Popularfood> {
                         mainAxisSpacing: 14.0,
                         
                       ),
+                      
                       physics: BouncingScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
-                return Popular_Foods(images: '${images}', Tittle: '${Tittle}', doller: '${doller}');
+               return InkWell(
+                 child: Popular_Foods(
+                       images: 'http://jayanthi10.pythonanywhere.com${list!.data![index].image}',
+                       Tittle: '${list!.data![index].productId}', 
+                       doller: '${list!.data![index].productName}'),
+                       onTap:(){
+                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
+                          return details(
+                            productId: list!.data![index].productId,
+                            
+                          );
+                         }));
+                       } ,
+               );
               }
           ),)]),
         ),
@@ -114,3 +156,5 @@ class _PopularfoodState extends State<Popularfood> {
     );
   }
 }
+
+// images: '${images}', Tittle: '${Tittle}', doller: '${doller}');

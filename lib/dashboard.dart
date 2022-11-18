@@ -58,31 +58,6 @@ class _DashboardState extends State<Dashboard> {
 
     ProductList? list;
  bool _loading= false;
-
-  // void data() async {
-  //   setState(() {
-
-  //   });
-  //   try {
-  //     Response response =
-  //     await Dio().get("https://api.publicapis.org/entries");
-  //     setState(() {
-  //       print(response.data);
-  //       list = testingFromJson(jsonEncode(response.data));
-  //       _loading=true;
-  //      // products=list[0].products;
-  //     });
-
-  //   } catch (e) {
-  //     setState(() {
-  //       _loading = true;
-  //     });
-  //     print(e);
-  //   }
-  // }
-
-
-
 void data() async{
   try{
     Response response= await Dio().get("http://jayanthi10.pythonanywhere.com/api/v1/list_products/");
@@ -205,14 +180,14 @@ void data() async{
               Container(
               height: 270,
               child: ListView.builder(
-                  itemCount:list?.products!.length,
+                  itemCount:list!.data!.length,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
                     return dashboard_new(
-                      images: 'http://jayanthi10.pythonanywhere.com${list!.products![index].image}',
-                     Tittle: '${list!.products![index].productId}', 
-                     doller: '${list!.products![index].productName}');
+                    images: 'http://jayanthi10.pythonanywhere.com${list!.data![index].image}',
+                     Tittle: '${list!.data![index].productId}', 
+                     doller: '${list!.data![index].productName}');
                   })
               ),
                   Row(
@@ -230,14 +205,14 @@ void data() async{
                 Container(
               height: 270,
               child: ListView.builder(
-                  itemCount:list?.products!.length,
+                  itemCount:images.length,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
                     return dashboard_new(
-                      images: "http://jayanthi10.pythonanywhere.com${list!.products![index].image}", 
-                      doller: "${list!.products![index].productName}",
-                      Tittle: "${list!.products![index].productId}");
+                       images: 'http://jayanthi10.pythonanywhere.com${list!.data![index].image}',
+                     Tittle: '${list!.data![index].productId}', 
+                     doller: '${list!.data![index].productName}');
                   })
               ),
               // ElevatedButton(onPressed: (() {

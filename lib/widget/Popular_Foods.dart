@@ -35,7 +35,7 @@ class Popular_Foods extends StatelessWidget{
                                           height: 15,
                                         ),
                                         Container(
-                                          child: Image.asset(images),
+                                          child: Image.network(images),
                                         ),
                                         SizedBox(height: 13,),
                                         Align(
