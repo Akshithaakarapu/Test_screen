@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:test_screen/dashboard_Home.dart';
-import 'package:test_screen/widget/dashboard_ex.dart';
 
-class Cart_page extends StatelessWidget {
-  const Cart_page({ Key? key }) : super(key: key);
+class card2_page extends StatefulWidget {
+  const card2_page({ Key? key }) : super(key: key);
 
+  @override
+  State<card2_page> createState() => _card2_pageState();
+}
+
+class _card2_pageState extends State<card2_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +43,7 @@ class Cart_page extends StatelessWidget {
                     height: 15,
                   ),
                   Text(
-                    "Item Add To Cart Successfully ",
+                    "Item Deleted Successfully ",
                     style: TextStyle(
                       decoration: TextDecoration.none,
                       fontSize: 25,

@@ -10,7 +10,7 @@ class Popular_Foods extends StatelessWidget{
     return Row( 
                       children: [
                         Container(
-                          height: 203,
+                          height: 280,
                           width: 154,
                           decoration: BoxDecoration(
                             border: Border.all(

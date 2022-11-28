@@ -98,7 +98,7 @@ class _PopularfoodState extends State<Popularfood> {
               Row(
                     children: [
                       Container(
-                        width: 50,
+                        width: 59,
                         height: 59,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -125,7 +125,7 @@ class _PopularfoodState extends State<Popularfood> {
               shrinkWrap: true,           
               scrollDirection: Axis.vertical,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( 
-                        childAspectRatio: 5/ 7,
+                        childAspectRatio: 3/ 7,
                         crossAxisCount: 2,
                         crossAxisSpacing: 12.0,
                         mainAxisSpacing: 14.0,
@@ -141,7 +141,7 @@ class _PopularfoodState extends State<Popularfood> {
                        doller: '${list!.data![index].productName}'),
                        onTap:(){
                         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
-                          return details(
+                          return Details(
                             productId: list!.data![index].productId,
                             
                           );
